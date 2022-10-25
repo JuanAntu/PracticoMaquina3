@@ -1,0 +1,121 @@
+# depslib dependency file v1.0
+1665469393 source:c:\users\maria\desktop\p2-grupo5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAC.h"
+	"RS.h"
+
+1665467931 c:\users\maria\desktop\p2-grupo5\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1664655057 c:\users\maria\desktop\p2-grupo5\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1665362064 c:\users\maria\desktop\p2-grupo5\rac.h
+	"vendedores.h"
+
+1665466058 c:\users\maria\desktop\p2-grupo5\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1665469642 c:\users\maria\desktop\p2-grupo5\lista.h
+
+1666278084 source:d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAC.h"
+	"RS.h"
+
+1666278412 d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1664655058 d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1666197072 d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\rac.h
+	"vendedores.h"
+
+1666277722 d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1665469644 d:\educación\a.unsl\2do\segundo cuatrimentre\estructura de datos y algoritmos\trabajospracticosmaquina\p2-grupo5\lista.h
+
+1666311842 source:c:\users\juan\desktop\p2-grupo5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAC.h"
+	"RS.h"
+
+1666312962 c:\users\juan\desktop\p2-grupo5\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1664655058 c:\users\juan\desktop\p2-grupo5\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1666197074 c:\users\juan\desktop\p2-grupo5\rac.h
+	"vendedores.h"
+
+1666277724 c:\users\juan\desktop\p2-grupo5\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1665469644 c:\users\juan\desktop\p2-grupo5\lista.h
+
+1666311842 source:c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAC.h"
+	"RS.h"
+
+1666713012 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1664655058 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1666197074 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\rac.h
+	"vendedores.h"
+
+1666277724 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1665469644 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\lista.h
+
