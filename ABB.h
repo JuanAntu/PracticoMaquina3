@@ -95,7 +95,7 @@ int bajaABB(arbol *a,int dni){
                         padre = aux;
                         aux = aux->der;
                     }
-                    if(c == 0 )
+                    if(c == 0 )//comentario a eliminar
                         {
                         padre->izq = aux->izq;
                         }
