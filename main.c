@@ -6,6 +6,8 @@
 #include "vendedores.h"
 #include "RAC.h"
 #include "RS.h"
+#include "LSO.h"
+#include "LSOBB.h"
 //GRUPO 5
 //MARIANO ARBELOA GUGLIELMINO
 //JUAN ANTU ARIAS
@@ -42,106 +44,63 @@ int main(){
     arbol arbol;
     rac r;
     rs s;
+    listita lso;
+    listabb lsobb;
     initABB(&arbol);
     initRAC(&r);
     initRS(&s);
+    inicializarlso(&lso);
+    init(&lsobb);
     do{
         system("cls");
-        printf("Seleccione la lista que desea utilizar \n");
-        printf("<1> Arbol binario de busqueda \n");
-        printf("<2> Rebalse abierto cuadratico \n");
-        printf("<3> Rebalse separado\n");
-        printf("<4> Salir\n");
-        printf("Ingrese una opcion \n");
-        scanf("%d",&opc);
-        if(opc==1 || opc==2 || opc==3){
-            do{
-                system("cls");
-                printf("--Bienvenido al Sistema-- \n");
-                printf("--Menu de opciones-- \n");
-                printf("---------------------------------------------------------------- \n");
-                printf("1. Agregar vendedor \n");
-                printf("2. Quitar vendedor \n");
-                printf("3. Consultar vendedores \n");
-                printf("4. Mostrar estructura \n");
-                printf("5. Memorizacion previa \n");
-                printf("6. Volver a elegir lista \n");
-                printf("---------------------------------------------------------------- \n");
-                printf("--Ingrese una opcion-- \n");
-                scanf("%d",&opcion);
-                switch (opcion) {
-                    case 1:
-                        system("cls");
-                        if (opc==1) {
-                            cargaABB(&arbol);
-                        }else if (opc==2){
-                            cargaRAC(&r);
-                        }else{
-                            cargaRS(&s);
-                        }
-                        getch();
-                        break;
-                    case 2:
-                        system("cls");
-                        if (opc==1) {
-                            eliminarABB(&arbol);
-                        }else if(opc==2){
-                            eliminarRAC(&r);
-                        }else{
-                            eliminarRS(&s);
-                        }
-                        getch();
-                        break;
-                    case 3:
-                        system("cls");
-                        if (opc==1) {
-                            consultarVendABB(arbol);
-                        }else if(opc==2){
-                            consultarVendRAC(r);
-                        }else{
-                            consultarVendRS(s);
-                        }
-                        getch();
-                        break;
-                    case 4:
-                        system("cls");
-                        if (opc==1) {
-                            preOrden(arbol.raiz);
-                        }else if(opc==2){
-                            muestraRAC(r);
-                        }else{
-                            muestraRS(s);
-                        }
-                        getch();
-                        break;
-                    case 5:
-                        system("cls");
-                        if (opc==1) {
-                            memorizacionABB(&arbol);
-                        }else if(opc==2){
-                            memorizacionRAC(&r);
-                        }else{
-                            memorizacionRS(&s);
-                        }
-                        getch();
-                        break;
-                    case 6:
-                        system("cls");
-                        opc=5;
-                        break;
-                    default:
-                        system("cls");
-                        printf("La opcion no es correcta");
-                        getch();
-                        break;
-                }
-            }while(opcion!=6);
-        }else if(opc==4){
-            system("cls");
-            printf("Gracias por utilizar nuestro sistema");
-            exit(1);
-        }
-    }while(opc!=4);
+        printf("--Bienvenido al Sistema-- \n");
+        printf("--Menu de opciones-- \n");
+        printf("---------------------------------------------------------------- \n");
+        printf("1. Comparar estructuras \n");
+        printf("2. Mostrar RAL \n");
+        printf("3. Mostrar RS \n");
+        printf("4. Mostrar ABB \n");
+        printf("5. Mostrar LSOBB \n");
+        printf("6. Mostrar LSO \n");
+        printf("7. Salir \n");
+        printf("---------------------------------------------------------------- \n");
+        printf("--Ingrese una opcion-- \n");
+        scanf("%d",&opcion);
+            switch (opcion){
+                case 1:
+                    system("cls");
+
+                case 2:
+                    system("cls");
+                    muestraRAC(r);
+                    break;
+                case 3:
+                    system("cls");
+                    muestraRS(s);
+                    break;
+                case 4:
+                    system("cls");
+                    preOrden(arbol.raiz);
+                    break;
+                case 5:
+                    system("cls");
+
+                    break;
+                case 6:
+                    system("cls");
+
+                    break;
+                case 7:
+                    system("cls");
+                    printf("Gracias por utilizar nuestro sistema");
+                    exit(1);
+                default:
+                    system("cls");
+                    printf("La opcion no es correcta");
+                    getch();
+                    break;
+            }
+    }while(opcion!=6);
     system("cls");
     return 0;
 }

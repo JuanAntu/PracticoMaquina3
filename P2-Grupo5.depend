@@ -119,3 +119,33 @@
 
 1665469644 c:\users\usuario\desktop\zzz\universidad\eda\tp de maquina 3\p2-grupo5\lista.h
 
+1666733856 source:c:\users\maria\desktop\tpmaquina3\practicomaquina3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAC.h"
+	"RS.h"
+
+1666733856 c:\users\maria\desktop\tpmaquina3\practicomaquina3\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1666733856 c:\users\maria\desktop\tpmaquina3\practicomaquina3\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1666733856 c:\users\maria\desktop\tpmaquina3\practicomaquina3\rac.h
+	"vendedores.h"
+
+1666733856 c:\users\maria\desktop\tpmaquina3\practicomaquina3\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1666733856 c:\users\maria\desktop\tpmaquina3\practicomaquina3\lista.h
+
