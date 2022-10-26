@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="ABB.h" />
+		<Unit filename="LSO2.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="LSOBB2.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="RAC.h" />
 		<Unit filename="RS.h" />
 		<Unit filename="lista.h" />

@@ -6,8 +6,8 @@
 #include "vendedores.h"
 #include "RAC.h"
 #include "RS.h"
-#include "LSO.h"
-#include "LSOBB.h"
+#include "LSO2.h"
+#include "LSOBB2.h"
 //GRUPO 5
 //MARIANO ARBELOA GUGLIELMINO
 //JUAN ANTU ARIAS
