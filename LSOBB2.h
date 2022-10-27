@@ -31,7 +31,7 @@ int localizarLSOBB(listabb *a,int dni, int *pos){
     }
 }
 
-int altaLSOBT(listabb *lsobb,vendedor elem){
+int altaLSOBB(listabb *lsobb,vendedor elem){
     int pos,exito,i;
     exito = localizarLSOBB(lsobb,elem.documento,&pos);
     if(exito == 0){
@@ -50,8 +50,8 @@ int altaLSOBT(listabb *lsobb,vendedor elem){
     }
 }
 
-int bajaLSOBT(listabb *lsobb,int dni){
-    int pos,exito,i=0,confirmar;
+int bajaLSOBB(listabb *lsobb,int dni){
+    int pos,exito,i=0;
     exito = localizarLSOBB(lsobb,dni,&pos);
     if(exito==1){
         for(i=pos;i<(*lsobb).cant-1;i++){
@@ -65,10 +65,10 @@ int bajaLSOBT(listabb *lsobb,int dni){
 
 }
 
-vendedor evocacionlsobb(listabb lsobb,int dni,int *exito){
+vendedor evocacionlsobb(listabb lsobb,int dni){
     int pos;
-    *exito=localizarLSOBB(&lsobb,dni,&pos);
-    if (*exito==1){
+    int exito=localizarLSOBB(&lsobb,dni,&pos);
+    if (exito==1){
         return lsobb.arr[pos];
     }
 }

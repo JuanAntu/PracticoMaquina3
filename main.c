@@ -4,53 +4,26 @@
 #include <conio.h>
 #include "ABB.h"
 #include "vendedores.h"
-#include "RAC.h"
+#include "RAL.h"
 #include "RS.h"
 #include "LSO2.h"
 #include "LSOBB2.h"
 //GRUPO 5
 //MARIANO ARBELOA GUGLIELMINO
 //JUAN ANTU ARIAS
-void cargaABB(arbol *);
-
-void eliminarABB(arbol *);
-
-void consultarVendABB(arbol);
-
-void memorizacionABB(arbol *);
-
-void cargaRAC(rac *);
-
-void eliminarRAC(rac *);
-
-void consultarVendRAC(rac);
-
-void memorizacionRAC(rac *);
-
-void muestraRAC(rac);
-
-void cargaRS(rs *);
-
-void muestraRS(rs);
-
-void eliminarRS(rs *);
-
-void consultarVendRS(rs);
-
-void memorizacionRS(rs *);
-
 int main(){
     int opcion,opc;
     arbol arbol;
-    rac r;
+    ral r;
     rs s;
     listita lso;
     listabb lsobb;
     initABB(&arbol);
-    initRAC(&r);
+    initRAL(&r);
     initRS(&s);
     inicializarlso(&lso);
     init(&lsobb);
+    memorizacionABB(&arbol,&s,&lso,&lsobb,&r);
     do{
         system("cls");
         printf("--Bienvenido al Sistema-- \n");
@@ -70,9 +43,10 @@ int main(){
                 case 1:
                     system("cls");
 
+                    break
                 case 2:
                     system("cls");
-                    muestraRAC(r);
+                    muestraRAL(r);
                     break;
                 case 3:
                     system("cls");
@@ -84,11 +58,11 @@ int main(){
                     break;
                 case 5:
                     system("cls");
-
+                        muestraLSOBB(lsobb);
                     break;
                 case 6:
                     system("cls");
-
+                        muestraLSO(lso);
                     break;
                 case 7:
                     system("cls");
@@ -100,100 +74,19 @@ int main(){
                     getch();
                     break;
             }
-    }while(opcion!=6);
+    }while(opcion!=7);
     system("cls");
     return 0;
 }
-
-void cargaABB(arbol *arbol){
-    vendedor vend;
-    int documentoaux;
-    float montoaux;
-    int cantidadaux;
-    int contador=0;
-    char nombreyapellidoaux[50], canalaux[20], telefonoaux[15];
-    printf("Ingrese el numero de documento\n");
-    scanf("%d",&documentoaux);
-    while((documentoaux<0)||(documentoaux>99999999)){
-        printf("Ingrese un numero de Documento valido:\n ");
-        scanf("%d", &documentoaux);
-    }
-    vend.documento=documentoaux;
-    printf("Ingrese el nombre y apellido del vendedor\n");
-    fflush(stdin);
-    scanf("%[^\n]s",nombreyapellidoaux);
-    strcpy(vend.nombreyapellido,nombreyapellidoaux);
-    printf("Ingrese el telefono\n");
-    fflush(stdin);
-    scanf("%[^\n]s", telefonoaux);
-    strcpy(vend.telefono,telefonoaux);
-    printf("Ingrese el monto vendido\n");
-    scanf("%f",&montoaux);
-    while((montoaux<0)){
-        printf("Ingrese un monto valido:\n ");
-        scanf("%f", &montoaux);
-    }
-    vend.monto = montoaux;
-    printf("Ingrese la cantidad vendida\n");
-    scanf("%d",&cantidadaux);
-    while((cantidadaux<0)){
-        printf("Ingrese una cantidad valida:\n ");
-        scanf("%d", &cantidadaux);
-    }
-    vend.cantidad = cantidadaux;
-    printf("Ingrese el canal de venta\n");
-    fflush(stdin);
-    scanf("%[^\n]s", canalaux);
-    strcpy(vend.canal,canalaux);
-    contador=altaABB(arbol,vend);
-    printf("---------------------------------------------------------------- \n");
-    if(contador==1){
-        printf("Alta exitosa");
-    }else if(contador<1){
-        printf("El alta no fue exitosa");
-    }else{
-        printf("Alta no exitosa por estructura llena");
-    }
-}
-
-void eliminarABB(arbol *a){
-    int dni;
-    int exito;
-    printf("Ingrese el dni del vendedor que desea eliminar:\n");
-    scanf("%d",&dni);
-    exito=bajaABB(a,dni);
-    if (exito==1){
-        printf("Baja exitosa");
-    }else if(exito==0){
-        printf("Se cancelo la baja");
-    }else{
-        printf("No se encontro el vendedor");
-    }
-}
-
-void consultarVendABB(arbol a){
-    int exito,documento;
-    vendedor vend;
-    printf("Ingrese el documento del vendedor a consultar\n");
-    scanf("%d",&documento);
-    vend = evocacionABB(a,documento,&exito);
-    if(exito==1){
-        printf("%d \n",vend.documento);
-        printf("%s \n",vend.nombreyapellido);
-        printf("%s \n",vend.telefono);
-        printf("%f \n",vend.monto);
-        printf("%d \n",vend.cantidad);
-        printf("%s \n",vend.canal);
-    }else{
-        printf("El vendedor no se encuentra en el registro\n");
-    }
-}
-
-void memorizacionABB(arbol *arbol){
+//ELIMINE CARGAS, ELIMINACION, MEMORIZAR Y DEMAS FUNCIONES QUE NO NOS SIRVEN
+//ARBOL Y REBALSE SEPARADO Y LSO MUESTRAN 81 VENDEDORES
+//RAL MUESTRA 91 Y LSOBB MUESTRA 110
+//LA MEMORIZACION POR LO QUE SE VE FUNCIONA PERFECTAMENTE
+void memorizacionABB(arbol *arbol, rs *s, listita *l, listabb *lbb, ral *r){
     FILE *archivo;
     int cont;
     vendedor vend;
-    int documentoaux;
+    int documentoaux, aux;
     float montoaux;
     int cantidadaux;
     char auxc;
@@ -204,139 +97,126 @@ void memorizacionABB(arbol *arbol){
     }else{
         rewind(archivo);
         while((feof(archivo))==0){
-            fscanf(archivo,"%d",&documentoaux);
-            vend.documento = documentoaux;
-            fscanf(archivo,"%c",&auxc);
-            fflush(stdin);
-            fgets(nombreyapellidoaux,50,archivo);
-            nombreyapellidoaux[strlen(nombreyapellidoaux)-1]='\0';
-            strcpy(aux1,nombreyapellidoaux);
-            strcpy(vend.nombreyapellido,aux1);
-            fflush(stdin);
-            fgets(telefonoaux,15,archivo);
-            telefonoaux[strlen(telefonoaux)-1]='\0';
-            strcpy(aux3,telefonoaux);
-            strcpy(vend.telefono,aux3);
-            fscanf(archivo,"%f",&montoaux);
-            vend.monto = montoaux;
-            fscanf(archivo,"%d",&cantidadaux);
-            vend.cantidad = cantidadaux;
-            fscanf(archivo,"%c",&auxc);
-            fflush(stdin);
-            fgets(canalaux,20,archivo);
-            canalaux[strlen(canalaux)-1]='\0';
-            strcpy(aux2,canalaux);
-            strcpy(vend.canal,aux2);
-            cont=altaABB(arbol,vend);
-            if(cont==2){
-                printf("La estructura se lleno");
-                break;
+            fscanf(archivo,"%d",&aux);
+            if(aux==1){
+                fscanf(archivo,"%d",&documentoaux);
+                vend.documento = documentoaux;
+                fscanf(archivo,"%c",&auxc);
+                fflush(stdin);
+                fgets(nombreyapellidoaux,50,archivo);
+                nombreyapellidoaux[strlen(nombreyapellidoaux)-1]='\0';
+                strcpy(aux1,nombreyapellidoaux);
+                strcpy(vend.nombreyapellido,aux1);
+                fflush(stdin);
+                fgets(telefonoaux,15,archivo);
+                telefonoaux[strlen(telefonoaux)-1]='\0';
+                strcpy(aux3,telefonoaux);
+                strcpy(vend.telefono,aux3);
+                fscanf(archivo,"%f",&montoaux);
+                vend.monto = montoaux;
+                fscanf(archivo,"%d",&cantidadaux);
+                vend.cantidad = cantidadaux;
+                fscanf(archivo,"%c",&auxc);
+                fflush(stdin);
+                fgets(canalaux,20,archivo);
+                canalaux[strlen(canalaux)-1]='\0';
+                strcpy(aux2,canalaux);
+                strcpy(vend.canal,aux2);
+
+                altaABB(arbol,vend);
+                altaRS(s,vend);
+                altaLSO(l,vend);
+                altaLSOBB(lbb,vend);
+                altaRAL(r,vend);
+
+            }else if(aux==2){
+                fscanf(archivo,"%d",&documentoaux);
+                vend.documento = documentoaux;
+                fscanf(archivo,"%c",&auxc);
+                fflush(stdin);
+                fgets(nombreyapellidoaux,50,archivo);
+                nombreyapellidoaux[strlen(nombreyapellidoaux)-1]='\0';
+                strcpy(aux1,nombreyapellidoaux);
+                strcpy(vend.nombreyapellido,aux1);
+                fflush(stdin);
+                fgets(telefonoaux,15,archivo);
+                telefonoaux[strlen(telefonoaux)-1]='\0';
+                strcpy(aux3,telefonoaux);
+                strcpy(vend.telefono,aux3);
+                fscanf(archivo,"%f",&montoaux);
+                vend.monto = montoaux;
+                fscanf(archivo,"%d",&cantidadaux);
+                vend.cantidad = cantidadaux;
+                fscanf(archivo,"%c",&auxc);
+                fflush(stdin);
+                fgets(canalaux,20,archivo);
+                canalaux[strlen(canalaux)-1]='\0';
+                strcpy(aux2,canalaux);
+                strcpy(vend.canal,aux2);
+
+                bajaABB(arbol,vend.documento);
+                bajaRS(s,vend.documento);
+                bajaLSO(l,vend.documento);
+                bajaLSOBB(lbb,vend.documento);
+                bajaRAL(r,vend.documento);
+
+            }else{
+                fscanf(archivo,"%d",&documentoaux);
+                vend.documento = documentoaux;
+
+                evocacionABB(*arbol,vend.documento);
+                evocacionRS(*s,vend.documento);
+                evocacion(*l,vend.documento);
+                evocacionlsobb(*lbb,vend.documento);
+                evocacionRAL(*r,vend.documento);
+
             }
         }
-        printf("La operacion se ha realizado exitosamente.");
         fclose(archivo);
     }
 }
 
-void cargaRAC(rac *r){
-    vendedor vend;
-    int documentoaux;
-    float montoaux;
-    int cantidadaux;
-    int contador=0;
-    char nombreyapellidoaux[50], canalaux[20], telefonoaux[15];
-    if((*r).cant==MAXI){
-        printf("La estructura esta llena");
+void muestraLSOBB(listabb lsobb){
+    int j;
+    if((lsobb).cant==0){
+        printf("No hay vendedores en la lista");
     }else{
-        printf("Ingrese el numero de documento\n");
-        scanf("%d",&documentoaux);
-        while((documentoaux<1)||(documentoaux>99999999)){
-            printf("Ingrese un numero de Documento valido:\n ");
-            scanf("%d", &documentoaux);
-        }
-        vend.documento=documentoaux;
-        printf("Ingrese el nombre y apellido del vendedor\n");
-        fflush(stdin);
-        scanf("%[^\n]s",nombreyapellidoaux);
-        strcpy(vend.nombreyapellido,nombreyapellidoaux);
-        printf("Ingrese el telefono\n");
-        fflush(stdin);
-        scanf("%[^\n]s", telefonoaux);
-        strcpy(vend.telefono,telefonoaux);
-        printf("Ingrese el monto vendido\n");
-        scanf("%f",&montoaux);
-        while((montoaux<0)){
-            printf("Ingrese un monto valido:\n ");
-            scanf("%f", &montoaux);
-        }
-        vend.monto = montoaux;
-        printf("Ingrese la cantidad vendida\n");
-        scanf("%d",&cantidadaux);
-        while((cantidadaux<0)){
-            printf("Ingrese una cantidad valida:\n ");
-            scanf("%d", &cantidadaux);
-        }
-        vend.cantidad = cantidadaux;
-        printf("Ingrese el canal de venta\n");
-        fflush(stdin);
-        scanf("%[^\n]s", canalaux);
-        strcpy(vend.canal,canalaux);
-        contador=altaRAC(r,vend);
-        printf("---------------------------------------------------------------- \n");
-        if(contador==1){
-            printf("Alta exitosa\n");
-        }else if(contador>1){
-            printf("El alta no fue exitosa para ese vendedor\n");
-        }else{
-            printf("El alta no fue exitosa");
+        getchar();
+        for(j=0;j<(lsobb).cant;j++){
+            printf("Vendedor N:%d\n",j+1);
+            printf("%d \n",lsobb.arr[j].documento); //ROMPEMOS ENCAPSULAMIENTO POR PROBLEMAS DEL CODEBLOCKS
+            printf("%s \n",lsobb.arr[j].nombreyapellido);
+            printf("%s \n",lsobb.arr[j].telefono);
+            printf("%f \n",lsobb.arr[j].monto);
+            printf("%d \n",lsobb.arr[j].cantidad);
+            printf("%s \n",lsobb.arr[j].canal);
+            printf("---------------------------------------------------------------- \n");
+            getchar();
         }
     }
 }
 
-void eliminarRAC(rac *r){
-    vendedor vend;
-    int documento;
-    int exito;
-    if ((*r).cant==0){
-        printf("No hay vendedores");
+void muestraLSO(listita lso){
+    int j;
+    if((lso).cant==1){
+        printf("No hay vendedores ingresados");
     }else{
-        printf("Ingrese el DNI del vendedor que desea eliminar\n");
-        scanf("%d",&documento);
-        vend.documento = documento;
-        system("cls");
-        exito=bajaRAC(r,vend.documento);
-        if(exito==1){
-            printf("------------------------------------------\n");
-            printf("Baja exitosa\n");
-        }else if(exito==2){
-            printf("------------------------------------------\n");
-            printf("No se encuentra el vendedor\n");
-        }else{
-            printf("------------------------------------------\n");
-            printf("Usted cancelo la baja del vendedor\n");
+            getchar();
+            for(j=0;j<(lso).cant-1;j++){
+                printf("Vendedor N:%d\n",j+1);
+                printf("%d \n",lso.arr[j].documento); //ROMPEMOS ENCAPSULAMIENTO POR PROBLEMAS DEL CODEBLOCKS
+                printf("%s \n",lso.arr[j].nombreyapellido);
+                printf("%s \n",lso.arr[j].telefono);
+                printf("%f \n",lso.arr[j].monto);
+                printf("%d \n",lso.arr[j].cantidad);
+                printf("%s \n",lso.arr[j].canal);
+                printf("---------------------------------------------------------------- \n");
+                getchar();
         }
     }
 }
 
-void consultarVendRAC(rac r){
-    int exito,documento;
-    vendedor vend;
-    printf("Ingrese el documento del vendedor a consultar\n");
-    scanf("%d",&documento);
-    vend = evocacionRAC(r,documento,&exito);
-    if(exito==1){
-        printf("%d \n",vend.documento);
-        printf("%s \n",vend.nombreyapellido);
-        printf("%s \n",vend.telefono);
-        printf("%f \n",vend.monto);
-        printf("%d \n",vend.cantidad);
-        printf("%s \n",vend.canal);
-    }else{
-        printf("El vendedor no se encuentra en el registro\n");
-    }
-}
-
-void muestraRAC(rac r){
+void muestraRAL(ral r){
     int j;
     getchar();
     if(r.cant==0){
@@ -365,158 +245,6 @@ void muestraRAC(rac r){
                 getchar();
             }
         }
-    }
-}
-
-void memorizacionRAC(rac *r){
-    FILE *archivo;
-    vendedor vend;
-    int documentoaux;
-    float montoaux;
-    int cantidadaux;
-    char auxc;
-    char nombreyapellidoaux[50], canalaux[20], telefonoaux[15];
-    char aux1[50],aux2[20],aux3[15];
-    if((*r).cant==MAXI){
-        printf("La estructura esta llena");
-    }else{
-        if((archivo=fopen("vendedores.txt","r"))==NULL){
-            printf("No se puede ingresar al archivo\n");
-        }else{
-            rewind(archivo);
-            while((feof(archivo))==0){
-                fscanf(archivo,"%d",&documentoaux);
-                vend.documento = documentoaux;
-                fscanf(archivo,"%c",&auxc);
-                fflush(stdin);
-                fgets(nombreyapellidoaux,50,archivo);
-                nombreyapellidoaux[strlen(nombreyapellidoaux)-1]='\0';
-                strcpy(aux1,nombreyapellidoaux);
-                strcpy(vend.nombreyapellido,aux1);
-                fflush(stdin);
-                fgets(telefonoaux,15,archivo);
-                telefonoaux[strlen(telefonoaux)-1]='\0';
-                strcpy(aux3,telefonoaux);
-                strcpy(vend.telefono,aux3);
-                fscanf(archivo,"%f",&montoaux);
-                vend.monto = montoaux;
-                fscanf(archivo,"%d",&cantidadaux);
-                vend.cantidad = cantidadaux;
-                fscanf(archivo,"%c",&auxc);
-                fflush(stdin);
-                fgets(canalaux,20,archivo);
-                canalaux[strlen(canalaux)-1]='\0';
-                strcpy(aux2,canalaux);
-                strcpy(vend.canal,aux2);
-                altaRAC(r,vend);
-                if((*r).cant==MAXI){
-                    printf("La estructura se lleno\n");
-                    break;
-                }
-            }
-            printf("La operacion se ha realizado exitosamente.");
-            fclose(archivo);
-        }
-    }
-}
-
-void cargaRS(rs *s){
-    vendedor vend;
-    int documentoaux;
-    float montoaux;
-    int cantidadaux;
-    int contador=0;
-    char nombreyapellidoaux[50], canalaux[20], telefonoaux[15];
-    printf("Ingrese el numero de documento\n");
-    scanf("%d",&documentoaux);
-    while((documentoaux<1)||(documentoaux>99999999)){
-        printf("Ingrese un numero de Documento valido:\n ");
-        scanf("%d", &documentoaux);
-    }
-    vend.documento=documentoaux;
-    printf("Ingrese el nombre y apellido del vendedor\n");
-    fflush(stdin);
-    scanf("%[^\n]s",nombreyapellidoaux);
-    strcpy(vend.nombreyapellido,nombreyapellidoaux);
-    printf("Ingrese el telefono\n");
-    fflush(stdin);
-    scanf("%[^\n]s", telefonoaux);
-    strcpy(vend.telefono,telefonoaux);
-    printf("Ingrese el monto vendido\n");
-    scanf("%f",&montoaux);
-    while((montoaux<0)){
-        printf("Ingrese un monto valido:\n ");
-        scanf("%f", &montoaux);
-    }
-    vend.monto = montoaux;
-    printf("Ingrese la cantidad vendida\n");
-    scanf("%d",&cantidadaux);
-    while((cantidadaux<0)){
-        printf("Ingrese una cantidad valida:\n ");
-        scanf("%d", &cantidadaux);
-    }
-    vend.cantidad = cantidadaux;
-    printf("Ingrese el canal de venta\n");
-    fflush(stdin);
-    scanf("%[^\n]s", canalaux);
-    strcpy(vend.canal,canalaux);
-    contador=altaRS(s,vend);
-    printf("---------------------------------------------------------------- \n");
-    if(contador==1){
-        printf("Alta exitosa");
-    }else if(contador<1){
-        printf("Alta no exitosa");
-    }else{
-        printf("Alta no exitosa por estructura llena");
-    }
-}
-
-void eliminarRS(rs *s){
-    int documento;
-    int opc=1;
-    int exito;
-    int contador=0,j;
-    for(j=0;j<MAX;j++){
-        if((*s).arr[j].acc==NULL){
-            contador++;
-        }
-    }
-    if(contador==MAX){
-            printf("La estructura esta vacia");
-    }else{
-            printf("Ingrese el DNI del vendedor que desea eliminar\n");
-            scanf("%d",&documento);
-            system("cls");
-            exito=bajaRS(s,documento);
-            if(exito==1){
-                printf("------------------------------------------\n");
-                printf("Baja exitosa\n");
-            }else if(exito==2){
-                printf("------------------------------------------\n");
-                printf("No se encuentra el vendedor\n");
-            }else{
-                printf("------------------------------------------\n");
-                printf("Usted cancelo la baja del vendedor\n");
-        }
-    }
-}
-
-
-void consultarVendRS(rs s){
-    int exito,documento;
-    vendedor vend;
-    printf("Ingrese el documento del vendedor a consultar\n");
-    scanf("%d",&documento);
-    vend = evocacionRS(s,documento,&exito);
-    if(exito==1){
-        printf("%d \n",vend.documento);
-        printf("%s \n",vend.nombreyapellido);
-        printf("%s \n",vend.telefono);
-        printf("%f \n",vend.monto);
-        printf("%d \n",vend.cantidad);
-        printf("%s \n",vend.canal);
-    }else{
-        printf("El vendedor no se encuentra en el registro\n");
     }
 }
 
@@ -551,53 +279,3 @@ void muestraRS(rs s){
         }
     }
 }
-
-void memorizacionRS(rs *s){
-    FILE *archivo;
-    vendedor vend;
-    int cont=0;
-    int documentoaux;
-    float montoaux;
-    int cantidadaux;
-    char auxc;
-    char nombreyapellidoaux[50], canalaux[20], telefonoaux[15];
-    char aux1[50],aux2[20],aux3[15];
-    if((archivo=fopen("vendedores.txt","r"))==NULL){
-        printf("No se puede ingresar al archivo\n");
-    }else{
-        rewind(archivo);
-        while((feof(archivo))==0){
-            fscanf(archivo,"%d",&documentoaux);
-            vend.documento = documentoaux;
-            fscanf(archivo,"%c",&auxc);
-            fflush(stdin);
-            fgets(nombreyapellidoaux,50,archivo);
-            nombreyapellidoaux[strlen(nombreyapellidoaux)-1]='\0';
-            strcpy(aux1,nombreyapellidoaux);
-            strcpy(vend.nombreyapellido,aux1);
-            fflush(stdin);
-            fgets(telefonoaux,15,archivo);
-            telefonoaux[strlen(telefonoaux)-1]='\0';
-            strcpy(aux3,telefonoaux);
-            strcpy(vend.telefono,aux3);
-            fscanf(archivo,"%f",&montoaux);
-            vend.monto = montoaux;
-            fscanf(archivo,"%d",&cantidadaux);
-            vend.cantidad = cantidadaux;
-            fscanf(archivo,"%c",&auxc);
-            fflush(stdin);
-            fgets(canalaux,20,archivo);
-            canalaux[strlen(canalaux)-1]='\0';
-            strcpy(aux2,canalaux);
-            strcpy(vend.canal,aux2);
-            cont=altaRS(s,vend);
-            if(cont==2){
-                printf("La estructura se lleno\n");
-                break;
-            }
-        }
-        printf("La operacion se ha realizado exitosamente.");
-        fclose(archivo);
-    }
-}
-

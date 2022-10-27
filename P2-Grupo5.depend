@@ -241,3 +241,46 @@
 	"vendedores.h"
 	<math.h>
 
+1666840966 source:c:\users\maria\desktop\tp\practicomaquina3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"ABB.h"
+	"vendedores.h"
+	"RAL.h"
+	"RS.h"
+	"LSO2.h"
+	"LSOBB2.h"
+
+1666838462 c:\users\maria\desktop\tp\practicomaquina3\abb.h
+	<string.h>
+	<conio.h>
+	"vendedores.h"
+	<malloc.h>
+
+1666836377 c:\users\maria\desktop\tp\practicomaquina3\vendedores.h
+	<string.h>
+	<conio.h>
+	<malloc.h>
+
+1666840593 c:\users\maria\desktop\tp\practicomaquina3\rac.h
+	"vendedores.h"
+
+1666840510 c:\users\maria\desktop\tp\practicomaquina3\rs.h
+	"Vendedores.h"
+	"lista.h"
+
+1666836377 c:\users\maria\desktop\tp\practicomaquina3\lista.h
+
+1666840510 c:\users\maria\desktop\tp\practicomaquina3\lso2.h
+	"vendedores.h"
+	<math.h>
+
+1666840510 c:\users\maria\desktop\tp\practicomaquina3\lsobb2.h
+	"vendedores.h"
+	<math.h>
+
+1666840977 c:\users\maria\desktop\tp\practicomaquina3\ral.h
+	"vendedores.h"
+

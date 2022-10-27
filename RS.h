@@ -57,51 +57,31 @@ int altaRS(rs *s,vendedor dato){
 }
 
 int bajaRS(rs *s, int dni) {
-    int pos,exito,confirmar;
+    int pos,exito;
     int h;
     exito = localizarRS(s, dni,&h);
     if (exito == 1) {
-        printf("Vendedor N:%d\n", pos + 1);
-        printf("%d \n", (*s).cur->vipd.documento);
-        printf("%s \n", (*s).cur->vipd.nombreyapellido);
-        printf("%s \n", (*s).cur->vipd.telefono);
-        printf("%f \n", (*s).cur->vipd.monto);
-        printf("%d \n", (*s).cur->vipd.cantidad);
-        printf("%s \n\n", (*s).cur->vipd.canal);
-        printf("Es el elemento que desea dar de baja?\n");
-        printf("<1>SI\n");
-        printf("<2>NO\n");
-        scanf("%d", &confirmar);
-        while (confirmar < 1 || confirmar > 2) {
-            printf("Ingrese correctamente");
-            printf("<1>SI\n");
-            printf("<2>NO\n");
-            scanf("%d", &confirmar);
+        if ((*s).arr[h].acc == (*s).cur) {
+            (*s).arr[h].acc = (*s).cur->ps;
+            free((void *) (*s).cur);
+            (*s).cur = (*s).arr[h].acc;
+            (*s).curaux = (*s).arr[h].acc;
+        } else {
+            (*s).curaux->ps = (*s).cur->ps;
+            free((void *) (*s).cur);
+            (*s).cur = (*s).cur->ps;
         }
-        if (confirmar == 1) {
-            if ((*s).arr[h].acc == (*s).cur) {
-                (*s).arr[h].acc = (*s).cur->ps;
-                free((void *) (*s).cur);
-                (*s).cur = (*s).arr[h].acc;
-                (*s).curaux = (*s).arr[h].acc;
-            } else {
-                (*s).curaux->ps = (*s).cur->ps;
-                free((void *) (*s).cur);
-                (*s).cur = (*s).cur->ps;
-            }
-            return 1;
-        } else{
-            return 0;
-        }
+        return 1;
     }else{
-        return 2;
+        return 0;
     }
 }
 
-vendedor evocacionRS(rs s,int dni,int *exito){
+
+vendedor evocacionRS(rs s,int dni){
     int h;
-    *exito=localizarRS(&s,dni,&h);
-    if (*exito==1){
+    int exito=localizarRS(&s,dni,&h);
+    if (exito==1){
         return s.cur->vipd;
     }
 }

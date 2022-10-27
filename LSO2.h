@@ -46,7 +46,7 @@ int altaLSO(listita *lso,vendedor elem){
 }
 
 int bajaLSO(listita *lso,int dni){
-    int pos,exito,i=0,confirmar;
+    int pos,exito,i=0;
     exito = localizarLSO(dni,lso,&pos);
     if(exito==1){
         for(i=pos;i<(*lso).cant-1;i++){
@@ -59,10 +59,10 @@ int bajaLSO(listita *lso,int dni){
     }
 }
 
-vendedor evocacion(listita lso,int dni,int *exito){
+vendedor evocacion(listita lso,int dni){
     int pos;
-    *exito=localizarLSO(dni,&lso,&pos);
-    if (*exito==1){
+    int exito=localizarLSO(dni,&lso,&pos);
+    if (exito==1){
         return lso.arr[pos];
     }
 }
