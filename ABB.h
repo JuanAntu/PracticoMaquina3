@@ -4,6 +4,11 @@
 #include <conio.h>
 #include "vendedores.h"
 #include <malloc.h>
+
+float contAlta= 0.0,costAlta = 0.0;
+float contBaja= 0.0,costBaja = 0.0;
+float costEvoc = 0.0;
+
 typedef struct Nodo{
     vendedor elem;
     struct Nodo *der;
@@ -23,6 +28,7 @@ int localizarABB(arbol *a,int dni){
     a->pos = a->raiz;
     a->padre = a->raiz;
     while((*a).pos != NULL && (*a).pos->elem.documento != dni){
+        costEvoc++;
         if ((*a).pos->elem.documento > dni){
             (*a).padre = (*a).pos;
             (*a).pos = (*a).pos->izq;
@@ -40,11 +46,13 @@ int localizarABB(arbol *a,int dni){
 
 int altaABB(arbol *a,vendedor dato){
     if (localizarABB(a,dato.documento)==0){
+
         nodo *nuevo_nodo;
         nuevo_nodo=(nodo*)malloc(sizeof(nodo));
         if(nuevo_nodo==NULL){
             return 2;
         }else{
+            contAlta++;
             nuevo_nodo->elem=dato;
             nuevo_nodo->der=NULL;
             nuevo_nodo->izq=NULL;
@@ -54,9 +62,11 @@ int altaABB(arbol *a,vendedor dato){
                 (*a).raiz=(*a).padre;
                 return 1;
             }else if ((*a).padre->elem.documento < dato.documento){
+                costAlta++;
                 (*a).padre->der=nuevo_nodo;
                 return 1;
             }else{
+                costAlta++;
                 (*a).padre->izq=nuevo_nodo;
                 return 1;
             }
@@ -87,6 +97,7 @@ int bajaABB(arbol *a,int dni){
             scanf("%d",&op);
         }
         if(op == 1){
+            contBaja++;
             if ((*a).pos->izq != NULL){
                 if((*a).pos->der != NULL){//caso tiene los dos hijos
                     aux = (*a).pos->izq;
@@ -95,7 +106,7 @@ int bajaABB(arbol *a,int dni){
                         padre = aux;
                         aux = aux->der;
                     }
-                    if(c == 0 )//comentario a eliminar
+                    if(c == 0 )
                         {
                         padre->izq = aux->izq;
                         }
@@ -103,7 +114,7 @@ int bajaABB(arbol *a,int dni){
                         {
                         padre->der = aux->izq;
                         }
-
+                    costBaja +=2.5;
                     (*a).pos->elem = aux->elem;
                     free(aux);
                     return 1;
@@ -116,16 +127,23 @@ int bajaABB(arbol *a,int dni){
                         (*a).padre->der = aux;
                     else
                         (*a).raiz = aux;
+                    costBaja++;
                     free(((*a).pos));
                     return 1;
                 }
             }
             else if((*a).pos->der != NULL){//caso tiene hd
                     aux = (*a).pos->der;
-                    if((*a).padre->izq == (*a).pos)
+                    if((*a).padre->izq == (*a).pos){
+                        costBaja++;
                         (*a).padre->izq = aux;
-                    else if((*a).padre->der == (*a).pos)
+                    }
+
+                    else if((*a).padre->der == (*a).pos){
                         (*a).padre->der = aux;
+                        costBaja++;
+                    }
+
                     else
                         (*a).raiz = aux;
 
