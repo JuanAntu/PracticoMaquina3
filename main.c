@@ -12,6 +12,7 @@
 //MARIANO ARBELOA GUGLIELMINO
 //JUAN ANTU ARIAS
 int main(){
+
     int opcion,opc;
     arbol arbol;
     ral r;
@@ -42,8 +43,21 @@ int main(){
             switch (opcion){
                 case 1:
                     system("cls");
-
-                    break
+                    printf("El peor escenario del alta en el ABB es de costo: %.2f\n",(costAlta/contAlta));
+                    printf("El escenario esperado del alta en el ABB es de costo: %.2f\n",(costAlta/contAlta));
+                    printf("El peor escenario de la baja en el ABB es cuando el elemento tiene dos hijos y es de costo: 2.5\n");
+                    printf("El escenario esperado de la baja en el ABB es de costo: %.2f\n",(costBaja/contBaja));
+                    printf("El peor escenario del evocar en el ABB es cuando el elemento se encuentra en una hoja y tiene un costo de: %.2f\n",maxEvoc);
+                    printf("El escenario esperado del evocar en el ABB es de costo: %.2f\n",(costEvoc/contEvoc));
+                    printf("El peor escenario del alta en una LSO es de costo: %.2f\n",maxlsoA);
+                    printf("El escenario esperado del alta en una LSO es de costo: %.2f\n",(lsocostA/lsocontA));
+                    printf("El peor escenario de la baja en una LSO es de costo: %.2f\n",maxlsoB);
+                    printf("El escenario esperado de la baja una LSO es de costo: %.2f\n",(lscostB/lscontB));
+                    printf("El peor escenario del evocar en la LSO tiene un costo de: %.2f\n",lsomaxEvoc);
+                    printf("El escenario esperado del evocar en una LSO es de costo: %.2f\n",(lsocosEvoc/lsocontEvoc));
+                    getchar();
+                    getchar();
+                    break;
                 case 2:
                     system("cls");
                     muestraRAL(r);
