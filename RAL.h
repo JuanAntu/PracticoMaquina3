@@ -2,6 +2,9 @@
 #define RAL_H_INCLUDED
 #include "vendedores.h"
 #define MAXI 149
+//float ralcostA= 0.0,ralcontA = 0.0,maxralA = 0.0;
+//float ralcostB= 0.0,ralcontB = 0.0,maxralB = 0.0;
+float ralcostEvoc = 0.0,ralcontEvoc = 0.0,ralmaxEvoc=0.0;
 typedef struct Ral{
     vendedor arr[MAXI];
     int cant;
@@ -20,12 +23,19 @@ int localizarRAL(ral *r,int dni,int *pos){
     int h=hashing(dni);
     int n=0;
     int contador=0;
+    float tempp=0.0;
     while(n<MAXI && (*r).arr[(h+n) % MAXI].documento!=0 && (*r).arr[(h+n) % MAXI].documento!=dni){
         if(contador==0 && (*r).arr[(h+n) % MAXI].documento==1){
             contador+=1;
             (*pos)=(h+n) % MAXI;
         }
         n++;
+        ralcostEvoc++;
+        tempp++;
+    }
+    ralcontEvoc++;
+    if(ralmaxEvoc<tempp){
+        ralmaxEvoc = tempp;
     }
     if(n==MAXI && contador==0){
         return 2;

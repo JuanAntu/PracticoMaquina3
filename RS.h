@@ -3,6 +3,9 @@
 #define MAX 60
 #include "Vendedores.h"
 #include "lista.h"
+float rscostA= 0.0,rscontA = 0.0,maxrsA = 0.0;
+float rscostB= 0.0,ralcontB = 0.0,maxrsB = 0.0;
+float rscostEvoc = 0.0,rscontEvoc = 0.0,rsmaxEvoc=0.0;
 typedef struct RS{
     lista arr[MAX];
     Nodo *cur;

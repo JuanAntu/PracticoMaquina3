@@ -55,6 +55,18 @@ int main(){
                     printf("El escenario esperado de la baja una LSO es de costo: %.2f\n",(lscostB/lscontB));
                     printf("El peor escenario del evocar en la LSO tiene un costo de: %.2f\n",lsomaxEvoc);
                     printf("El escenario esperado del evocar en una LSO es de costo: %.2f\n",(lsocosEvoc/lsocontEvoc));
+                    printf("El peor escenario del alta en una LSOBB es de costo: %.2f\n",maxlsbA);
+                    printf("El escenario esperado del alta en una LSOBB es de costo: %.2f\n",(lsbcostA/lsbcontA));
+                    printf("El peor escenario de la baja en una LSOBB es de costo: %.2f\n",maxlsbB);
+                    printf("El escenario esperado de la baja una LSOBB es de costo: %.2f\n",(lsbcostB/lsbcontB));
+                    printf("El peor escenario del evocar en la LSOBB tiene un costo de: %.2f\n",lsbmaxEvoc);
+                    printf("El escenario esperado del evocar en una LSOBB es de costo: %.2f\n",(lsbcosEvoc/lsbcontEvoc));
+                    printf("El peor escenario del alta en un RAL es el mismo que el esperado ya que es constante, es de costo: 1.5\n");
+                    printf("El peor escenario de la baja en un RAL es igual al esperado y es de costo: 1.5\n");
+                    printf("El peor escenario del evocar en el RAL tiene un costo de: %.2f\n",ralmaxEvoc);
+                    printf("El escenario esperado del evocar en el RAL es de costo: %.2f\n",(ralcostEvoc/ralcontEvoc));
+
+
                     getchar();
                     getchar();
                     break;
