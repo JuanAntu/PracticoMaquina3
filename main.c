@@ -43,29 +43,17 @@ int main(){
             switch (opcion){
                 case 1:
                     system("cls");
-                    printf("El peor escenario del alta en el ABB es de costo: %.2f\n",(costAlta/contAlta));
-                    printf("El escenario esperado del alta en el ABB es de costo: %.2f\n",(costAlta/contAlta));
-                    printf("El peor escenario de la baja en el ABB es cuando el elemento tiene dos hijos y es de costo: 2.5\n");
-                    printf("El escenario esperado de la baja en el ABB es de costo: %.2f\n",(costBaja/contBaja));
-                    printf("El peor escenario del evocar en el ABB es cuando el elemento se encuentra en una hoja y tiene un costo de: %.2f\n",maxEvoc);
-                    printf("El escenario esperado del evocar en el ABB es de costo: %.2f\n",(costEvoc/contEvoc));
-                    printf("El peor escenario del alta en una LSO es de costo: %.2f\n",maxlsoA);
-                    printf("El escenario esperado del alta en una LSO es de costo: %.2f\n",(lsocostA/lsocontA));
-                    printf("El peor escenario de la baja en una LSO es de costo: %.2f\n",maxlsoB);
-                    printf("El escenario esperado de la baja una LSO es de costo: %.2f\n",(lscostB/lscontB));
-                    printf("El peor escenario del evocar en la LSO tiene un costo de: %.2f\n",lsomaxEvoc);
-                    printf("El escenario esperado del evocar en una LSO es de costo: %.2f\n",(lsocosEvoc/lsocontEvoc));
-                    printf("El peor escenario del alta en una LSOBB es de costo: %.2f\n",maxlsbA);
-                    printf("El escenario esperado del alta en una LSOBB es de costo: %.2f\n",(lsbcostA/lsbcontA));
-                    printf("El peor escenario de la baja en una LSOBB es de costo: %.2f\n",maxlsbB);
-                    printf("El escenario esperado de la baja una LSOBB es de costo: %.2f\n",(lsbcostB/lsbcontB));
-                    printf("El peor escenario del evocar en la LSOBB tiene un costo de: %.2f\n",lsbmaxEvoc);
-                    printf("El escenario esperado del evocar en una LSOBB es de costo: %.2f\n",(lsbcosEvoc/lsbcontEvoc));
-                    printf("El peor escenario del alta en un RAL es el mismo que el esperado ya que es constante, es de costo: 1.5\n");
-                    printf("El peor escenario de la baja en un RAL es igual al esperado y es de costo: 1.5\n");
-                    printf("El peor escenario del evocar en el RAL tiene un costo de: %.2f\n",ralmaxEvoc);
-                    printf("El escenario esperado del evocar en el RAL es de costo: %.2f\n",(ralcostEvoc/ralcontEvoc));
-
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf("        | Esf. Max. Alta | Esf. Med. Alta | Esf. Max. Baja | Esf. Med. Baja | Esf. Max. Evocar | Esf. Med. Evocar |\n");
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf("  LSO   |     %.2f     |     %.2f      |     %.2f      |     %.2f      |      %.2f      |      %.2f       |\n",maxlsoA,(lsocostA/lsocontA),maxlsoB,(lscostB/lscontB),lsomaxEvoc,(lsocosEvoc/lsocontEvoc));
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf(" LSOBB  |     %.2f     |     %.2f      |     %.2f     |     %.2f      |      %.2f        |      %.2f        |\n",maxlsbA,(lsbcostA/lsbcontA),maxlsbB,(lsbcostB/lsbcontB),lsbmaxEvoc,(lsbcosEvoc/lsbcontEvoc));
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf("  ABB   |     1.00       |     %.2f       |     2.50       |     %.2f       |      %.2f       |      %.2f       |\n",(costAlta/contAlta),(costBaja/contBaja),maxEvoc,(costEvoc/contEvoc));
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf("  RAL   |     1.50       |     1.50       |     1.50       |     1.50       |      %.2f       |      %.2f        |\n",ralmaxEvoc,(ralcostEvoc/ralcontEvoc));
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
 
                     getchar();
                     getchar();
@@ -80,7 +68,9 @@ int main(){
                     break;
                 case 4:
                     system("cls");
+                    borrar(arbol.raiz);
                     preOrden(arbol.raiz);
+
                     break;
                 case 5:
                     system("cls");
