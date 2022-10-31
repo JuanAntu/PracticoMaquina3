@@ -24,6 +24,8 @@ int localizarRAL(ral *r,int dni,int *pos){
     int n=0;
     int contador=0;
     float tempp=0.0;
+    ralcostEvoc++;
+    tempp++;
     while(n<MAXI && (*r).arr[(h+n) % MAXI].documento!=0 && (*r).arr[(h+n) % MAXI].documento!=dni){
         if(contador==0 && (*r).arr[(h+n) % MAXI].documento==1){
             contador+=1;

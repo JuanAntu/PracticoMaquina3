@@ -19,6 +19,8 @@ void inicializarlso(listita *lso){
 int localizarLSO(int dni,listita *lso,int *pos){
     int i=0;
     float tempp =0.0;
+    lsocosEvoc++;
+    tempp++;
     while((*lso).arr[i].documento<dni){
         lsocosEvoc++;
         tempp++;

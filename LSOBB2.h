@@ -19,6 +19,8 @@ void init(listabb *a){
 
 int localizarLSOBB(listabb *a,int dni, int *pos){
     float li=0, ls=(*a).cant-1,tempp = 0.0;
+    lsbcosEvoc++;
+        tempp++;
     while(li<ls){
         lsbcosEvoc++;
         tempp++;

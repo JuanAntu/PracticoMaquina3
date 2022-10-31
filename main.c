@@ -24,6 +24,7 @@ int main(){
     initRS(&s);
     inicializarlso(&lso);
     init(&lsobb);
+
     do{
         system("cls");
         printf("--Bienvenido al Sistema-- \n");
@@ -45,13 +46,13 @@ int main(){
                     initRAL(&r);
                     inicializarlso(&lso);
                     init(&lsobb);
-
+                    borrarRS(&s);
                     borrar(arbol.raiz);
                     memorizacion(&arbol,&s,&lso,&lsobb,&r);
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     printf("        | Esf. Max. Alta | Esf. Med. Alta | Esf. Max. Baja | Esf. Med. Baja | Esf. Max. Evocar | Esf. Med. Evocar |\n");
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("  LSO   |     %.2f     |     %.2f      |     %.2f      |     %.2f      |      %.2f      |      %.2f       |\n",maxlsoA,(lsocostA/lsocontA),maxlsoB,(lscostB/lscontB),lsomaxEvoc,(lsocosEvoc/lsocontEvoc));
+                    printf("  LSO   |     %.2f     |     %.2f      |     %.2f     |     %.2f      |      %.2f      |      %.2f       |\n",maxlsoA,(lsocostA/lsocontA),maxlsoB,(lscostB/lscontB),lsomaxEvoc,(lsocosEvoc/lsocontEvoc));
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     printf(" LSOBB  |     %.2f     |     %.2f      |     %.2f     |     %.2f      |      %.2f        |      %.2f        |\n",maxlsbA,(lsbcostA/lsbcontA),maxlsbB,(lsbcostB/lsbcontB),lsbmaxEvoc,(lsbcosEvoc/lsbcontEvoc));
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
@@ -59,27 +60,44 @@ int main(){
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     printf("  RAL   |     1.50       |     1.50       |     1.50       |     1.50       |      %.2f       |      %.2f        |\n",ralmaxEvoc,(ralcostEvoc/ralcontEvoc));
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf("  RS    |     2.00       |     2.00       |     2.00       |     %.2f       |      %.2f        |      %.2f        |\n",(rscostB/rscontB),rsmaxEvoc,(rscostEvoc/rscontEvoc));
+                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     getchar();
                     break;
                 case 2:
                     system("cls");
                     muestraRAL(r);
+                    getchar();
+                    getchar();
                     break;
                 case 3:
                     system("cls");
                     muestraRS(s);
+                    getchar();
+                    getchar();
                     break;
                 case 4:
                     system("cls");
-                    preOrden(arbol.raiz);
+                    if(arbol.raiz == NULL){
+                        printf("El arbol esta vacio.\n");
+                    }else{
+                        preOrden(arbol.raiz);
+                    }
+
+                    getchar();
+                    getchar();
                     break;
                 case 5:
                     system("cls");
                     muestraLSOBB(lsobb);
+                    getchar();
+                    getchar();
                     break;
                 case 6:
                     system("cls");
                     muestraLSO(lso);
+                    getchar();
+                    getchar();
                     break;
                 case 7:
                     system("cls");

@@ -27,6 +27,8 @@ int localizarABB(arbol *a,int dni){
     a->pos = a->raiz;
     a->padre = a->raiz;
     temp = 0.0;
+    costEvoc++;
+    temp++;
     while((*a).pos != NULL && (*a).pos->elem.documento != dni){
         costEvoc++;
         temp++;

@@ -3,8 +3,8 @@
 #define MAX 60
 #include "Vendedores.h"
 #include "lista.h"
-float rscostA= 0.0,rscontA = 0.0,maxrsA = 0.0;
-float rscostB= 0.0,ralcontB = 0.0,maxrsB = 0.0;
+//float rscostA= 0.0,rscontA = 0.0,maxrsA = 0.0; siempre va a ser 2 ya que nuestra funcion de costo es cantidad de cambio de punteros.
+float rscostB= 0.0,rscontB = 0.0;//no necesita calcularse el max ya q se va a dar cuando debamos realizar dos modificaciones de punteros.
 float rscostEvoc = 0.0,rscontEvoc = 0.0,rsmaxEvoc=0.0;
 typedef struct RS{
     lista arr[MAX];
@@ -26,9 +26,18 @@ void initRS(rs *s){
 int localizarRS(rs *s,int dni,int *h){
     (*h)= hashingRS(dni);
     (*s).cur=(*s).arr[(*h)].acc;
+    float tempp = 0.0;
+    tempp++;
+    rscostEvoc++;
     while((*s).cur!=NULL && (*s).cur->vipd.documento!=dni){
         (*s).curaux=(*s).cur;
         (*s).cur=(*s).cur->ps;
+        tempp++;
+        rscostEvoc++;
+    }
+    rscontEvoc++;
+    if(rsmaxEvoc<tempp){
+        rsmaxEvoc = tempp;
     }
     if((*s).cur==NULL){
         return 0;
@@ -60,15 +69,18 @@ int bajaRS(rs *s, int dni) {
     int h;
     exito = localizarRS(s, dni,&h);
     if (exito == 1) {
+        rscontB++;
         if ((*s).arr[h].acc == (*s).cur) {
             (*s).arr[h].acc = (*s).cur->ps;
             free((void *) (*s).cur);
             (*s).cur = (*s).arr[h].acc;
             (*s).curaux = (*s).arr[h].acc;
+            rscostB++;
         } else {
             (*s).curaux->ps = (*s).cur->ps;
             free((void *) (*s).cur);
             (*s).cur = (*s).cur->ps;
+            rscostB+=2;
         }
         return 1;
     }else{
@@ -84,6 +96,19 @@ vendedor evocacionRS(rs s,int dni){
         return s.cur->vipd;
     }
 }
+void borrarRS(rs *s){
+    int j;
+    for(j=0;j<MAX;j++){
+            (*s).cur=(*s).arr[j].acc;
+            (*s).curaux=(*s).arr[j].acc;
+            while((*s).cur!=NULL){
+                (*s).curaux=(*s).cur;
+                (*s).cur=(*s).cur->ps;
+                free((*s).curaux);
+            }
+    }
+}
+
 
 int hashingRS (int dni) {
     char x[8];
