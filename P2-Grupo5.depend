@@ -201,7 +201,7 @@
 	"vendedores.h"
 	<math.h>
 
-1666972812 source:c:\users\usuario\desktop\practicomaquina3\main.c
+1667189997 source:c:\users\usuario\desktop\practicomaquina3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -213,13 +213,13 @@
 	"LSO2.h"
 	"LSOBB2.h"
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\abb.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\abb.h
 	<string.h>
 	<conio.h>
 	"vendedores.h"
 	<malloc.h>
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\vendedores.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\vendedores.h
 	<string.h>
 	<conio.h>
 	<malloc.h>
@@ -227,17 +227,17 @@
 1666826857 c:\users\usuario\desktop\practicomaquina3\rac.h
 	"vendedores.h"
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\rs.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\rs.h
 	"Vendedores.h"
 	"lista.h"
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\lista.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\lista.h
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\lso2.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\lso2.h
 	"vendedores.h"
 	<math.h>
 
-1666973139 c:\users\usuario\desktop\practicomaquina3\lsobb2.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\lsobb2.h
 	"vendedores.h"
 	<math.h>
 
@@ -324,7 +324,7 @@
 	"vendedores.h"
 	<math.h>
 
-1666970759 c:\users\usuario\desktop\practicomaquina3\ral.h
+1667189079 c:\users\usuario\desktop\practicomaquina3\ral.h
 	"vendedores.h"
 
 1667006926 source:c:\users\juan\desktop\practicomaquina3\main.c
