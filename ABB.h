@@ -161,8 +161,7 @@ vendedor evocacionABB(arbol a,int dni){
         return a.pos->elem;
     }
 }
-void borrar(nodo *a)
-{
+void borrar(nodo *a){
 if (a != NULL) {
         borrar(a->izq);
         borrar(a->der);

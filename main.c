@@ -24,7 +24,6 @@ int main(){
     initRS(&s);
     inicializarlso(&lso);
     init(&lsobb);
-    memorizacionABB(&arbol,&s,&lso,&lsobb,&r);
     do{
         system("cls");
         printf("--Bienvenido al Sistema-- \n");
@@ -43,6 +42,12 @@ int main(){
             switch (opcion){
                 case 1:
                     system("cls");
+                    initRAL(&r);
+                    inicializarlso(&lso);
+                    init(&lsobb);
+
+                    borrar(arbol.raiz);
+                    memorizacion(&arbol,&s,&lso,&lsobb,&r);
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     printf("        | Esf. Max. Alta | Esf. Med. Alta | Esf. Max. Baja | Esf. Med. Baja | Esf. Max. Evocar | Esf. Med. Evocar |\n");
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
@@ -54,8 +59,6 @@ int main(){
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
                     printf("  RAL   |     1.50       |     1.50       |     1.50       |     1.50       |      %.2f       |      %.2f        |\n",ralmaxEvoc,(ralcostEvoc/ralcontEvoc));
                     printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-
-                    getchar();
                     getchar();
                     break;
                 case 2:
@@ -68,17 +71,15 @@ int main(){
                     break;
                 case 4:
                     system("cls");
-                    borrar(arbol.raiz);
                     preOrden(arbol.raiz);
-
                     break;
                 case 5:
                     system("cls");
-                        muestraLSOBB(lsobb);
+                    muestraLSOBB(lsobb);
                     break;
                 case 6:
                     system("cls");
-                        muestraLSO(lso);
+                    muestraLSO(lso);
                     break;
                 case 7:
                     system("cls");
@@ -94,11 +95,8 @@ int main(){
     system("cls");
     return 0;
 }
-//ELIMINE CARGAS, ELIMINACION, MEMORIZAR Y DEMAS FUNCIONES QUE NO NOS SIRVEN
-//ARBOL Y REBALSE SEPARADO Y LSO MUESTRAN 81 VENDEDORES
-//RAL MUESTRA 91 Y LSOBB MUESTRA 110
-//LA MEMORIZACION POR LO QUE SE VE FUNCIONA PERFECTAMENTE
-void memorizacionABB(arbol *arbol, rs *s, listita *l, listabb *lbb, ral *r){
+
+void memorizacion(arbol *arbol, rs *s, listita *l, listabb *lbb, ral *r){
     FILE *archivo;
     int cont;
     vendedor vend;
@@ -200,7 +198,7 @@ void muestraLSOBB(listabb lsobb){
         getchar();
         for(j=0;j<(lsobb).cant;j++){
             printf("Vendedor N:%d\n",j+1);
-            printf("%d \n",lsobb.arr[j].documento); //ROMPEMOS ENCAPSULAMIENTO POR PROBLEMAS DEL CODEBLOCKS
+            printf("%d \n",lsobb.arr[j].documento);
             printf("%s \n",lsobb.arr[j].nombreyapellido);
             printf("%s \n",lsobb.arr[j].telefono);
             printf("%f \n",lsobb.arr[j].monto);
@@ -220,7 +218,7 @@ void muestraLSO(listita lso){
             getchar();
             for(j=0;j<(lso).cant-1;j++){
                 printf("Vendedor N:%d\n",j+1);
-                printf("%d \n",lso.arr[j].documento); //ROMPEMOS ENCAPSULAMIENTO POR PROBLEMAS DEL CODEBLOCKS
+                printf("%d \n",lso.arr[j].documento);
                 printf("%s \n",lso.arr[j].nombreyapellido);
                 printf("%s \n",lso.arr[j].telefono);
                 printf("%f \n",lso.arr[j].monto);
@@ -279,6 +277,12 @@ void muestraRS(rs s){
         for(j=0;j<MAX;j++){
             s.cur=s.arr[j].acc;
             s.curaux=s.arr[j].acc;
+            if(s.arr[j].acc==NULL){
+                    printf("Lista N:%d\n",j);
+                    printf("Lista vacia\n");
+                    printf("---------------------------------------------------------------- \n");
+                    getchar();
+            }
             while(s.cur!=NULL) {
                 printf("Lista N:%d\n",j);
                 printf("%d \n", s.cur->vipd.documento);

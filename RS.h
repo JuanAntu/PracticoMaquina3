@@ -45,13 +45,9 @@ int altaRS(rs *s,vendedor dato){
         if(p==NULL){
             return 2;
         }else{
-            (*p).ps=NULL;
+            (*p).ps=(*s).arr[h].acc;
             (*p).vipd=dato;
-            if((*s).arr[h].acc==(*s).cur){
-                (*s).arr[h].acc=p;
-            }else{
-                (*s).curaux->ps=p;
-            }
+            (*s).arr[h].acc=p;
             return 1;
             }
     }else{
