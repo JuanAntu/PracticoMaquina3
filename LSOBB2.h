@@ -19,27 +19,32 @@ void init(listabb *a){
 
 int localizarLSOBB(listabb *a,int dni, int *pos){
     float li=0, ls=(*a).cant-1,tempp = 0.0;
-    lsbcosEvoc++;
-        tempp++;
+    int testigo;
     while(li<ls){
         lsbcosEvoc++;
         tempp++;
-        int testigo = floor((li+ls)/2);
-        if(dni<(*a).arr[testigo].documento){
-            ls=testigo-1;
+        testigo = floor((li+ls)/2);
+        if(dni>(*a).arr[testigo].documento){
+            li=testigo+1;
         }
         else{
-            li=testigo+1;
+            ls=testigo;
         }
     }
     if(lsbmaxEvoc < tempp){
         lsbmaxEvoc = tempp;
     }
     lsbcontEvoc++;
-    (*pos)=li;
+
     if(dni==(*a).arr[(int)li].documento){
+        (*pos)=li;
         return 1;
     }else{
+        if(li == (*a).cant-1 && (*a).arr[(int)li].documento<dni){
+            (*pos)=li+1;
+        }else{
+            (*pos)=li;
+        }
         return 0;
     }
 }
