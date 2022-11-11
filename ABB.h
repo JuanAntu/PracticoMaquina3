@@ -7,7 +7,9 @@
 
 float contAlta= 0.0,costAlta = 0.0;
 float contBaja= 0.0,costBaja = 0.0;
-float costEvoc = 0.0,contEvoc = 0.0,maxEvoc=0.0,temp = 0.0;
+float costEvoc = 0.0,contEvoc = 0.0,maxEvoc=0.0;
+float costEvocf = 0.0,contEvocf = 0.0,maxEvocf=0.0;
+float temp = 0.0;
 typedef struct Nodo{
     vendedor elem;
     struct Nodo *der;
@@ -27,10 +29,9 @@ int localizarABB(arbol *a,int dni){
     a->pos = a->raiz;
     a->padre = a->raiz;
     temp = 0.0;
-    costEvoc++;
+
     temp++;
     while((*a).pos != NULL && (*a).pos->elem.documento != dni){
-        costEvoc++;
         temp++;
         if ((*a).pos->elem.documento > dni){
             (*a).padre = (*a).pos;
@@ -40,12 +41,19 @@ int localizarABB(arbol *a,int dni){
             (*a).pos = (*a).pos->der;
         }
     }
-    if(maxEvoc < temp){
-        maxEvoc = temp;
-    }
+
+
     if ((*a).pos == NULL){
+        if(maxEvocf < temp)
+            maxEvocf = temp;
+        contEvocf++;
+        costEvocf += temp;
         return 0;
     }else{
+        if(maxEvoc < temp)
+            maxEvoc = temp;
+        contEvoc++;
+        costEvoc += temp;
         return 1;
     }
 }
@@ -105,7 +113,7 @@ int bajaABB(arbol *a,int dni){
                 else{
                     padre->der = aux->izq;
                 }
-                costBaja +=2.5;
+                costBaja +=1.5;
                 (*a).pos->elem = aux->elem;
                 free(aux);
                 return 1;
@@ -118,6 +126,7 @@ int bajaABB(arbol *a,int dni){
                     (*a).padre->der = aux;
                 else
                     (*a).raiz = aux;
+
                 costBaja++;
                 free(((*a).pos));
                 return 1;
@@ -126,15 +135,17 @@ int bajaABB(arbol *a,int dni){
         else if((*a).pos->der != NULL){//caso tiene hd
                 aux = (*a).pos->der;
                 if((*a).padre->izq == (*a).pos){
-                    costBaja++;
+
                     (*a).padre->izq = aux;
                 }
                 else if((*a).padre->der == (*a).pos){
                     (*a).padre->der = aux;
-                    costBaja++;
+
                 }
                 else
                     (*a).raiz = aux;
+
+                costBaja++;
                 free(((*a).pos));
                 return 1;
         }
@@ -158,7 +169,6 @@ int bajaABB(arbol *a,int dni){
 
 vendedor evocacionABB(arbol a,int dni){
     int exito=localizarABB(&a,dni);
-    contEvoc++;
     if(exito==1){
         return a.pos->elem;
     }

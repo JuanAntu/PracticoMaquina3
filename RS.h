@@ -6,6 +6,7 @@
 //float rscostA= 0.0,rscontA = 0.0,maxrsA = 0.0; siempre va a ser 2 ya que nuestra funcion de costo es cantidad de cambio de punteros.
 float rscostB= 0.0,rscontB = 0.0;//no necesita calcularse el max ya q se va a dar cuando debamos realizar dos modificaciones de punteros.
 float rscostEvoc = 0.0,rscontEvoc = 0.0,rsmaxEvoc=0.0;
+float rscostEvocf = 0.0,rscontEvocf = 0.0,rsmaxEvocf=0.0;
 typedef struct RS{
     lista arr[MAX];
     Nodo *cur;
@@ -28,20 +29,27 @@ int localizarRS(rs *s,int dni,int *h){
     (*s).cur=(*s).arr[(*h)].acc;
     float tempp = 0.0;
     tempp++;
-    rscostEvoc++;
     while((*s).cur!=NULL && (*s).cur->vipd.documento!=dni){
         (*s).curaux=(*s).cur;
         (*s).cur=(*s).cur->ps;
         tempp++;
-        rscostEvoc++;
+
     }
-    rscontEvoc++;
-    if(rsmaxEvoc<tempp){
-        rsmaxEvoc = tempp;
-    }
+
     if((*s).cur==NULL){
+
+        if(rsmaxEvocf<tempp)
+            rsmaxEvocf = tempp;
+        rscostEvocf+=tempp;
+        rscontEvocf++;
+
         return 0;
     }else{
+        if(rsmaxEvoc<tempp)
+            rsmaxEvoc = tempp;
+        rscostEvoc+=tempp;
+        rscontEvoc++;
+
         return 1;
     }
 }
@@ -69,6 +77,7 @@ int bajaRS(rs *s, int dni) {
     int h;
     exito = localizarRS(s, dni,&h);
     if (exito == 1) {
+
         rscontB++;
         if ((*s).arr[h].acc == (*s).cur) {
             (*s).arr[h].acc = (*s).cur->ps;
@@ -80,7 +89,7 @@ int bajaRS(rs *s, int dni) {
             (*s).curaux->ps = (*s).cur->ps;
             free((void *) (*s).cur);
             (*s).cur = (*s).cur->ps;
-            rscostB+=2;
+            rscostB++;
         }
         return 1;
     }else{

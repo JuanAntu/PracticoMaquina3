@@ -49,22 +49,22 @@ int main(){
                     borrarRS(&s);
                     borrar(arbol.raiz);
                     memorizacion(&arbol,&s,&lso,&lsobb,&r);
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("        | Esf. Max. Alta | Esf. Med. Alta | Esf. Max. Baja | Esf. Med. Baja | Esf. Max. Evocar | Esf. Med. Evocar |\n");
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("  LSO   |     %.2f     |     %.2f      |     %.2f     |     %.2f      |      %.2f      |      %.2f       |\n",maxlsoA,(lsocostA/lsocontA),maxlsoB,(lscostB/lscontB),lsomaxEvoc,(lsocosEvoc/lsocontEvoc));
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf(" LSOBB  |     %.2f     |     %.2f      |     %.2f     |     %.2f      |      %.2f        |      %.2f        |\n",maxlsbA,(lsbcostA/lsbcontA),maxlsbB,(lsbcostB/lsbcontB),lsbmaxEvoc,(lsbcosEvoc/lsbcontEvoc));
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("  ABB   |     1.00       |     %.2f       |     2.50       |     %.2f       |      %.2f       |      %.2f       |\n",(costAlta/contAlta),(costBaja/contBaja),maxEvoc,(costEvoc/contEvoc));
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("  RAL   |      0.00      |     0.00       |     0.00       |     0.00       |      %.2f       |      %.2f        |\n",ralmaxEvoc,(ralcostEvoc/ralcontEvoc));
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
-                    printf("  RS    |     2.00       |     2.00       |     2.00       |     %.2f       |      %.2f        |      %.2f        |\n",(rscostB/rscontB),rsmaxEvoc,(rscostEvoc/rscontEvoc));
-                    printf(" ------------------------------------------------------------------------------------------------------------------ \n");
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
+                    printf("        | Esf. Max. Alta E.| Esf. Med. Alta E.| Esf. Max. Baja E.| Esf. Med. Baja E.| Esf. Max. Evoc. E. | Esf. Med. Evoc. E. | Esf. Max. Evoc. No E. |  Esf. Med. Evoc. No E. |\n");
+                    printf(" -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                    printf("  LSO   |     %.2f       |      %.2f       |      %.2f      |      %.2f       |        %.2f      |        %.2f       |         %.2f         |         %.2f          |\n",maxlsoA,(lsocostA/lsocontA),maxlsoB,(lscostB/lscontB),lsomaxEvoc,(lsocosEvoc/lsocontEvoc),lsomaxEvocf,(lsocosEvocf/lsocontEvocf));
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
+                    printf(" LSOBB  |     %.2f       |      %.2f       |      %.2f      |      %.2f       |        %.2f        |        %.2f        |          %.2f         |          %.2f          |\n",maxlsbA,(lsbcostA/lsbcontA),maxlsbB,(lsbcostB/lsbcontB),lsbmaxEvoc,(lsbcosEvoc/lsbcontEvoc),lsbmaxEvocf,(lsbcosEvocf/lsbcontEvocf));
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
+                    printf("  ABB   |     1.00         |      %.2f        |      2.50        |      %.2f        |       %.2f        |         %.2f       |         %.2f         |           %.2f         |\n",(costAlta/contAlta),(costBaja/contBaja),maxEvoc,(costEvoc/contEvoc),maxEvocf,(costEvocf/contEvocf));
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
+                    printf("  RAL   |       0.00       |      0.00        |      0.00        |      0.00        |        %.2f       |        %.2f        |         %.2f         |           %.2f        |\n",ralmaxEvoc,(ralcostEvoc/ralcontEvoc),ralmaxEvocf,(ralcostEvocf/ralcontEvocf));
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
+                    printf("  RS    |      2.00        |      2.00        |      2.00        |      %.2f        |        %.2f        |        %.2f        |        %.2f           |          %.2f          |\n",(rscostB/rscontB),rsmaxEvoc,(rscostEvoc/rscontEvoc),rsmaxEvocf,(rscostEvocf/rscontEvocf));
+                    printf(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n");
                     /*Lo primero que debemos tener en cuenta cuando realizamos esta comparacion son las funciones de costo utilizadas, para el evocar la
                     funcion de costo de todas las estructuras es "cantidad de celdas consultadas", para la alta y baja del RS y ABB se considera "cambio de
-                    punteros", y en las listas secuenciales(LSO,LSOBB,RAL) consideramos cantidad de corrimientos,debido a esta funcion de costo el esfuerzo
+                    punteros",cabe aclarar que consideramos que el cambio de puntero a NULL no se considera en el conteo de los costos, y en las listas secuenciales(LSO,LSOBB,RAL) consideramos cantidad de corrimientos,debido a esta funcion de costo el esfuerzo
                     medio y maximo del RAL es 0 ya que no presenta corrimiento de celdas, si comparamos la LSO con la LSOBB podemos ver el claro beneficio
                     de la busqueda binaria en la evocacion, se puede ver que de todas las estructuras las que tuvieron un menor costo tanto maximo como medio
                     de evocacion fueron el RS y el ABB, ambas estructuras dinamicas con manejo de punteros y las estructuras mas costosas tanto en la alta

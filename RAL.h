@@ -5,6 +5,7 @@
 //float ralcostA= 0.0,ralcontA = 0.0,maxralA = 0.0;
 //float ralcostB= 0.0,ralcontB = 0.0,maxralB = 0.0;
 float ralcostEvoc = 0.0,ralcontEvoc = 0.0,ralmaxEvoc=0.0;
+float ralcostEvocf = 0.0,ralcontEvocf = 0.0,ralmaxEvocf=0.0;
 typedef struct Ral{
     vendedor arr[MAXI];
     int cant;
@@ -24,27 +25,36 @@ int localizarRAL(ral *r,int dni,int *pos){
     int n=0;
     int contador=0;
     float tempp=0.0;
-    ralcostEvoc++;
+
     tempp++;
+
     while(n<MAXI && (*r).arr[(h+n) % MAXI].documento!=0 && (*r).arr[(h+n) % MAXI].documento!=dni){
         if(contador==0 && (*r).arr[(h+n) % MAXI].documento==1){
             contador+=1;
             (*pos)=(h+n) % MAXI;
         }
         n++;
-        ralcostEvoc++;
         tempp++;
     }
-    ralcontEvoc++;
-    if(ralmaxEvoc<tempp){
-        ralmaxEvoc = tempp;
-    }
+
     if(n==MAXI && contador==0){
+        if(ralmaxEvocf<tempp)
+            ralmaxEvocf = tempp;
+        ralcostEvocf+=tempp;
+        ralcontEvocf++;
         return 2;
     }else if(n==MAXI && contador==1){
+        if(ralmaxEvocf<tempp)
+            ralmaxEvocf = tempp;
+        ralcostEvocf+=tempp;
+        ralcontEvocf++;
         return 0;
     }
     if((*r).arr[(h+n) % MAXI].documento==0){
+        if(ralmaxEvocf<tempp)
+            ralmaxEvocf = tempp;
+        ralcostEvocf+=tempp;
+        ralcontEvocf++;
         if (contador==0){
             (*pos)=(h+n) % MAXI;
             return 0;
@@ -52,6 +62,13 @@ int localizarRAL(ral *r,int dni,int *pos){
             return 0;
         }
     }else if((*r).arr[(h+n) % MAXI].documento==dni){
+
+        if(ralmaxEvoc<tempp)
+            ralmaxEvoc = tempp;
+        ralcostEvoc+=tempp;
+        ralcontEvoc++;
+
+
         (*pos)=(h+n) % MAXI;
         return 1;
     }
